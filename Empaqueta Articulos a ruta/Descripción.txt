@@ -1,0 +1,1 @@
+Empaqueta los articulos que se dieron de alta en en el dia (Filtro[2]) a la carpeta c:\Dragonfish\Salida\art
