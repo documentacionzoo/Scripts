@@ -1,0 +1,5 @@
+Código del script: CANCELACIONPEDIDO
+Script para hacer la cancelación, en base a, de los pedidos.
+El archivo txt tiene los comandos del script con algunos ejemplos de filtros. 
+Los campos que se usan para los filtros son los de las tablas ComprobanteV y ComprobanteVDet, 
+o sea que se pueden aplicar mas filtros que lo que aparecen en los filtros avanzados.

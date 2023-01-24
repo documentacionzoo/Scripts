@@ -1,0 +1,23 @@
+loFac = _Screen.zoo.instanciarentidad( "DEVOLUCION" )
+loFac.oCompEnBaseA.cNombreEntidadAfectada = 'PEDIDO'
+*Filtro fecha 7 dias para atras	a hoy
+*	loFac.oCompEnBaseA.cWHERECOMPROBANTE = loFac.oCompEnBaseA.cWHERECOMPROBANTE + " and (cab.ffch BETWEEN (select convert(varchar, getdate()-7)) AND (select convert(varchar, getdate())))"
+*Filtro fecha desde el principio hasta 7 dias a la fecha de hoy.
+loFac.oCompEnBaseA.cWHERECOMPROBANTE = loFac.oCompEnBaseA.cWHERECOMPROBANTE + " and (cab.ffch BETWEEN (select '01/01/1900') AND (select convert(varchar, getdate()-7)))"
+*Filtro Cliente Desde Hasta
+*	loFac.oCompEnBaseA.cWHERECOMPROBANTE = loFac.oCompEnBaseA.cWHERECOMPROBANTE + " and (cab.fperson BETWEEN '0000000001' AND '0000000001')"
+*Filtro articulo Desde Hasta
+*	lofac.oCompEnBaseA.cWhere = lofac.oCompEnBaseA.cWhere + " and (sub1.ARTICULO BETWEEN '00100301' AND '00100301')"
+loResultado = _Screen.zoo.CrearObjeto( "ZooColeccion" )
+loSeleccionado = Createobject("custom")
+AddProperty( loSeleccionado, "cValor", "0" )
+AddProperty( loSeleccionado, "cFiltro", "ANULADO" )
+loResultado.Add( loSeleccionado )
+loFac.oCompEnBaseA.oNumeroComprobanteAfectado = loResultado
+loFac.oCompEnBaseA.InyectarEntidadesPrincipales( loFac, loFac.oCompEnBaseA.instanciarentidad( loFac.oCompEnBaseA.cNombreEntidadAfectada ) )
+loFac.oCompEnBaseA.QueTengoQueHacerConLosPreciosV2()
+loFac.oCompEnBaseA.ObtenerCabeceraDeComprobante()
+loFac.oCompEnBaseA.ObtenerDetalleDeComprobantes()
+loFac.NuevoBasadoEn()
+loFac.Grabar()
+loFac.Release()
